@@ -1,13 +1,12 @@
-#ifndef DIRTAEB_FSM_H
-#define DIRTAEB_FSM_H
+#pragma once
 
 // libs
 #include "tinyfsm.h"
 
 // ours
 #include "pusher_motor_fsm.h"
-#include "trigger_servo_fsm.h"
-#include "priming_motor_fsm.h"
+//#include "trigger_servo_fsm.h"
+//#include "priming_motor_fsm.h"
 #include "indicator_led_fsm.h"
 
 // ============================================================================
@@ -25,7 +24,7 @@ struct ButtonEvent : tinyfsm::Event
 struct TriggerEvent : ButtonEvent {};
 
 // emitted when the bolts position changes
-enum BoltPosition { OPEN, CLOSED, UNKNOWN };
+enum class BoltPosition { OPEN, CLOSED, UNKNOWN };
 struct BoltEvent : tinyfsm::Event
 {
     BoltPosition position;
@@ -44,14 +43,14 @@ struct CatchEvent : tinyfsm::Event
 };
 
 // emitted when the firing mode selector changes position
-enum FiringMode { SEMI, AUTO, SAFE };
+enum class FiringMode { SEMI, AUTO, SAFE };
 struct SelectorEvent : tinyfsm::Event
 {
     FiringMode mode;
 };
 
 // emitted when the carrier position changes
-enum CarrierPosition { FRONT, BACK };
+enum class CarrierPosition { FRONT, BACK, UNKNOWN };
 struct CarrierEvent : tinyfsm::Event
 {
     CarrierPosition pos;
@@ -92,10 +91,8 @@ protected:
     static CarrierPosition carrierPos_;
     static BoltPosition boltPos_;
     static FiringMode firingMode_;
-    static IndicatorState indicatorState_;
     static bool triggerPressed_;
     static bool catchCaught_;  // aka "primed"
     static bool startupFinished_;  // true when we have reset to the start state
 };
     
-#endif

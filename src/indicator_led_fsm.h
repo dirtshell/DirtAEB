@@ -1,5 +1,4 @@
-#ifndef INDICATOR_LED_FSM_H
-#define INDIACTOR_LED_FSM_H
+#pragma once
 
 // libs
 #include "tinyfsm.h"
@@ -38,4 +37,3 @@ protected:
     // state vars
     static Indication ledState_;
 };
-#endif

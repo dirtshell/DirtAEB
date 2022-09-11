@@ -1,3 +1,6 @@
+// STL
+#include <iostream>
+
 // libs
 #include "tinyfsm.h"
 
@@ -22,6 +25,7 @@ class Idle
     {
         // TODO change color of LED
         IndicatorLed::ledState_ = e.state;
+        std::cout << "Indicator LED color was set to " << e.state << std::endl;
     };
 };
 
