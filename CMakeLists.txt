@@ -44,6 +44,8 @@ add_executable(PusherMotorFsmTester
     src/pusher_tester.cpp
     src/indicator_led_fsm.h
     src/indicator_led_fsm.cpp
+    src/trigger_servo_fsm.cpp
+    src/trigger_servo_fsm.h
 )
 
 #==============================================================================
@@ -59,6 +61,8 @@ add_executable(PrimerMotorFsmTester
     src/primer_tester.cpp
     src/indicator_led_fsm.h
     src/indicator_led_fsm.cpp
+    src/trigger_servo_fsm.cpp
+    src/trigger_servo_fsm.h
 )
 #==============================================================================
 # Indicator LED FSM test utility
@@ -73,4 +77,6 @@ add_executable(IndicatorLedFsmTester
     src/indicator_tester.cpp
     src/indicator_led_fsm.h
     src/indicator_led_fsm.cpp
+    src/trigger_servo_fsm.cpp
+    src/trigger_servo_fsm.h
 )

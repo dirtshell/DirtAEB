@@ -12,9 +12,10 @@
 // ============================================================================
 
 // emitted to move the pusher
+enum class PusherMotorDirection { CCW, OFF, CW };
 struct RunPusherEvent : tinyfsm::Event
 {
-    int8_t direction;  // direction of the motor (-1 = CCW, 0 = off, 1 = CW)
+    PusherMotorDirection direction;
     uint8_t speed;  // speed to move [0,255]  
 };
 
@@ -40,7 +41,7 @@ public:
 
 protected:
     // initial values for state vars
-    static constexpr int8_t initSpeed_ = 0;
+    static constexpr int8_t init_speed_ = 0;
 
     // state vars
     static uint8_t speed_;  // motor speed, [0, 255]

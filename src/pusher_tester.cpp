@@ -30,14 +30,14 @@ int main(int argc, char *argvp[])
                 std::cout << "What speed do you want to move CW at? ";
                 std::cin >> speed;
                 run_event.speed = std::stoi(speed);
-                run_event.direction = 1;
+                run_event.direction = PusherMotorDirection::CW;
                 send_event(run_event);
                 break;
             case '2':
                 std::cout << "what speed do you want to move CCW at? ";
                 std::cin >> speed;
                 run_event.speed = std::stoi(speed);
-                run_event.direction = -1;
+                run_event.direction = PusherMotorDirection::CCW;
                 send_event(run_event);
                 break;
              case '0':

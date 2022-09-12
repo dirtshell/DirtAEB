@@ -28,8 +28,7 @@ class PrimerMotorSpinningCW
     void entry() override
     {
         // TODO spin the motor cw
-        std::cout << "Spinning the primer motor CW at " 
-                  << std::to_string(speed_) << std::endl;
+        std::cout << "Spinning the primer motor CW at " << speed_ << std::endl;
     };
 
     void react(StopPrimerEvent const &e)
@@ -43,18 +42,18 @@ class PrimerMotorSpinningCW
         // save the speed
         speed_ = e.speed;
 
-        if (e.direction == 0)
+        if (e.direction == PrimerMotorDirection::OFF)
         {
             // stop the motor
             transit<PrimerMotorStopped>();
         } 
-        else if (e.direction == 1)
+        else if (e.direction == PrimerMotorDirection::CW)
         {
             // TODO adjust the current motor speed
-            std::cout << "The primer motor speed was changed to " 
-                      << std::to_string(speed_) << std::endl;
+            std::cout << "The primer motor speed was changed to " << speed_ 
+                      << std::endl;
         }
-        else if (e.direction == -1)
+        else if (e.direction == PrimerMotorDirection::CCW)
         {
             // spin the motor CCW
             transit<PrimerMotorSpinningCCW>();
@@ -71,8 +70,7 @@ class PrimerMotorSpinningCCW
     void entry() override
     {
         // TODO spin the motor CCW
-        std::cout << "Spinning the primer motor CCW at " 
-                  << std::to_string(speed_) << std::endl;
+        std::cout << "Spinning the primer motor CCW at " << speed_ << std::endl;
     };
 
     void react(StopPrimerEvent const &e)
@@ -86,21 +84,21 @@ class PrimerMotorSpinningCCW
         // save the speed
         speed_ = e.speed;
 
-        if (e.direction == 0)
+        if (e.direction == PrimerMotorDirection::OFF)
         {
             // stop the motor
             transit<PrimerMotorStopped>();
         } 
-        else if (e.direction == 1)
+        else if (e.direction == PrimerMotorDirection::CW)
         {
             // spin the motor CW
             transit<PrimerMotorSpinningCW>();
         }
-        else if (e.direction == -1)
+        else if (e.direction == PrimerMotorDirection::CCW)
         {
             // TODO adjust the speed of the motor
-            std::cout << "The primer motor speed was changed to " 
-                      << std::to_string(speed_) << std::endl;
+            std::cout << "The primer motor speed was changed to " << speed_ 
+                      << std::endl;
         }
     };
 };
@@ -123,12 +121,12 @@ class PrimerMotorStopped
         // save the speed
         speed_ = e.speed;
 
-        if (e.direction == 1)
+        if (e.direction == PrimerMotorDirection::CW)
         {
             // spin the motor CW
             transit<PrimerMotorSpinningCW>();
         }
-        else if (e.direction == -1)
+        else if (e.direction == PrimerMotorDirection::CCW)
         {
             // spin the motor CCW
             transit<PrimerMotorSpinningCCW>();
@@ -137,7 +135,7 @@ class PrimerMotorStopped
 };
 
 // set initialization values for the state machine
-uint8_t PrimerMotor::speed_ = PrimerMotor::initSpeed_;
+uint8_t PrimerMotor::speed_ = PrimerMotor::init_speed_;
 
 // set the starting state of the FSM
 FSM_INITIAL_STATE(PrimerMotor, PrimerMotorStopped)

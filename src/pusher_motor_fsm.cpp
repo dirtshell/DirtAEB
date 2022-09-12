@@ -28,38 +28,37 @@ class PusherMotorSpinningCW
     void entry() override
     {
         // TODO spin the motor cw
-        std::cout << "Spinning the pusher motor CW at " 
-                  << std::to_string(speed_) << std::endl;
-    };
+        std::cout << "Spinning the pusher motor CW at " << speed_ << std::endl;
+    }
 
     void react(StopPusherEvent const &e)
     {
         speed_ = 0;
         transit<PusherMotorStopped>();
-    };
+    }
     
     void react(RunPusherEvent const &e)
     {
         // save the speed
         speed_ = e.speed;
 
-        if (e.direction == 0)
+        if (e.direction == PusherMotorDirection::OFF)
         {
             // stop the motor
             transit<PusherMotorStopped>();
         } 
-        else if (e.direction == 1)
+        else if (e.direction == PusherMotorDirection::CW)
         {
             // TODO adjust the current motor speed
-            std::cout << "The pusher motor speed was changed to " 
-                      << std::to_string(speed_) << std::endl;
+            std::cout << "The pusher motor speed was changed to " << speed_ 
+                      << std::endl;
         }
-        else if (e.direction == -1)
+        else if (e.direction == PusherMotorDirection::CCW)
         {
             // spin the motor CCW
             transit<PusherMotorSpinningCCW>();
         }
-    };
+    }
 };
 
 /**
@@ -71,38 +70,37 @@ class PusherMotorSpinningCCW
     void entry() override
     {
         // TODO spin the motor CCW
-        std::cout << "Spinning the pusher motor CCW at " 
-                  << std::to_string(speed_) << std::endl;
-    };
+        std::cout << "Spinning the pusher motor CCW at " << speed_ << std::endl;
+    }
 
     void react(StopPusherEvent const &e)
     {
         // TODO stop the motor
         transit<PusherMotorStopped>();
-    };
+    }
 
     void react(RunPusherEvent const &e)
     {
         // save the speed
         speed_ = e.speed;
 
-        if (e.direction == 0)
+        if (e.direction == PusherMotorDirection::OFF)
         {
             // stop the motor
             transit<PusherMotorStopped>();
         } 
-        else if (e.direction == 1)
+        else if (e.direction == PusherMotorDirection::CW)
         {
             // spin the motor CW
             transit<PusherMotorSpinningCW>();
         }
-        else if (e.direction == -1)
+        else if (e.direction == PusherMotorDirection::CCW)
         {
             // TODO adjust the speed of the motor
             std::cout << "The pusher motor speed was changed to " 
-                      << std::to_string(speed_) << std::endl;
+                      << speed_ << std::endl;
         }
-    };
+    }
 };
 
 /**
@@ -116,28 +114,28 @@ class PusherMotorStopped
         // TODO stop spinning the motor
         speed_ = 0;
         std::cout << "The pusher motor has been stopped" << std::endl;
-    };
+    }
     
     void react(RunPusherEvent const &e)
     {
         // save the speed
         speed_ = e.speed;
 
-        if (e.direction == 1)
+        if (e.direction == PusherMotorDirection::CW)
         {
             // spin the motor CW
             transit<PusherMotorSpinningCW>();
         }
-        else if (e.direction == -1)
+        else if (e.direction == PusherMotorDirection::CCW)
         {
             // spin the motor CCW
             transit<PusherMotorSpinningCCW>();
         }
-    };
+    }
 };
 
 // set initialization values for the state machine
-uint8_t PusherMotor::speed_ = PusherMotor::initSpeed_;
+uint8_t PusherMotor::speed_ = PusherMotor::init_speed_;
 
 // set the starting state of the FSM
 FSM_INITIAL_STATE(PusherMotor, PusherMotorStopped)
