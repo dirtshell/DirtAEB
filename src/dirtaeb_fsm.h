@@ -6,7 +6,7 @@
 // ours
 #include "pusher_motor_fsm.h"
 //#include "trigger_servo_fsm.h"
-//#include "priming_motor_fsm.h"
+#include "primer_motor_fsm.h"
 #include "indicator_led_fsm.h"
 
 // ============================================================================

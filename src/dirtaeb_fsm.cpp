@@ -4,7 +4,7 @@
 // ours
 #include "dirtaeb_fsm.h"
 #include "indicator_led_fsm.h"
-#include "priming_motor_fsm.h"
+#include "primer_motor_fsm.h"
 #include "pusher_motor_fsm.h"
 #include "fsmlist.h"
 

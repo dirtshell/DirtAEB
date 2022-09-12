@@ -39,5 +39,20 @@ add_executable(PusherMotorFsmTester
     src/tinyfsm.h
     src/pusher_motor_fsm.h
     src/pusher_motor_fsm.cpp
+    src/primer_motor_fsm.h
+    src/primer_motor_fsm.cpp
     src/pusher_tester.cpp
+)
+
+#==============================================================================
+# Primer motor FSM test utility
+#==============================================================================
+add_executable(PrimerMotorFsmTester 
+    src/fsm_list.h
+    src/tinyfsm.h
+    src/pusher_motor_fsm.h
+    src/pusher_motor_fsm.cpp
+    src/primer_motor_fsm.h
+    src/primer_motor_fsm.cpp
+    src/primer_tester.cpp
 )
