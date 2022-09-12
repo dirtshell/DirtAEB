@@ -12,7 +12,7 @@
 
 //using fsm_list = tinyfsm::FsmList<DirtAEB, PusherMotor, TriggerServo, 
 //      PrimerMotor, IndicatorLed>;
-using fsm_list = tinyfsm::FsmList<PusherMotor, PrimerMotor>;
+using fsm_list = tinyfsm::FsmList<PusherMotor, PrimerMotor, IndicatorLed>;
 
 /** dispatch event to the FSMs */
 template<typename E>

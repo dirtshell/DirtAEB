@@ -42,6 +42,8 @@ add_executable(PusherMotorFsmTester
     src/primer_motor_fsm.h
     src/primer_motor_fsm.cpp
     src/pusher_tester.cpp
+    src/indicator_led_fsm.h
+    src/indicator_led_fsm.cpp
 )
 
 #==============================================================================
@@ -55,4 +57,20 @@ add_executable(PrimerMotorFsmTester
     src/primer_motor_fsm.h
     src/primer_motor_fsm.cpp
     src/primer_tester.cpp
+    src/indicator_led_fsm.h
+    src/indicator_led_fsm.cpp
+)
+#==============================================================================
+# Indicator LED FSM test utility
+#==============================================================================
+add_executable(IndicatorLedFsmTester 
+    src/fsm_list.h
+    src/tinyfsm.h
+    src/pusher_motor_fsm.h
+    src/pusher_motor_fsm.cpp
+    src/primer_motor_fsm.h
+    src/primer_motor_fsm.cpp
+    src/indicator_tester.cpp
+    src/indicator_led_fsm.h
+    src/indicator_led_fsm.cpp
 )

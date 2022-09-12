@@ -6,7 +6,7 @@
 
 // ours
 #include "indicator_led_fsm.h"
-#include "fsmlist.h"
+#include "fsm_list.h"
 
 // ============================================================================
 // STATE DECLARATIONS
@@ -17,7 +17,7 @@
  * Simple idle state where when we recieve an event to change the led color,
  * we change it. No need to have any specialized states.
  */
-class Idle
+class IndicatorIdle
 : public IndicatorLed
 {
     // change the color of the LED
@@ -33,4 +33,4 @@ class Idle
 Indication IndicatorLed::ledState_ = IndicatorLed::initLedState_;
 
 // set the default state for the Indicatorled
-FSM_INITIAL_STATE(IndicatorLed, Idle)
+FSM_INITIAL_STATE(IndicatorLed, IndicatorIdle)
